@@ -3,45 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felix Oval Track Pro Digital Clock</title>
+    <title>Felix Oval Track Pro - Digital Clock</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="tacho-container">
-        <!-- Main device body - rectangular with rounded corners like original -->
+        <!-- Exact replica of Felix Oval Track Pro, only LCD shows time -->
         <div class="device-body">
-            <!-- Top section with felix branding -->
-            <div class="top-section">
-                <div class="felix-logo">
-                    <span class="felix-text">FELIX</span>
-                </div>
-                <div class="model-name">OVAL TRACK PRO</div>
+            <!-- Top Felix branding -->
+            <div class="felix-brand">
+                <span class="felix-text">FELIX</span>
             </div>
             
-            <!-- LCD Display section -->
-            <div class="lcd-section">
-                <div class="lcd-frame">
-                    <div class="lcd-screen">
-                        <span class="time-text" id="timeText">00:00:00</span>
-                    </div>
-                </div>
-            </div>
+            <!-- Model text -->
+            <div class="model-text">OVAL TRACK PRO</div>
             
-            <!-- Bottom section with RPM label and Teltac -->
-            <div class="bottom-section">
-                <div class="rpm-section">
-                    <span class="rpm-text">RPM/100</span>
-                </div>
-                <div class="teltac-badge">
-                    <span class="teltac-text">TELTAC</span>
+            <!-- LCD Display - ONLY thing that changes, shows time instead of RPM -->
+            <div class="lcd-display">
+                <div class="lcd-screen">
+                    <span class="time-text" id="timeText">00:00:00</span>
                 </div>
             </div>
             
-            <!-- Four corner mounting screws -->
-            <div class="mounting-screw top-left"></div>
-            <div class="mounting-screw top-right"></div>
-            <div class="mounting-screw bottom-left"></div>
-            <div class="mounting-screw bottom-right"></div>
+            <!-- Keep original RPM/100 label exactly as is -->
+            <div class="rpm-label">RPM/100</div>
+            
+            <!-- Keep original Teltac branding exactly as is -->
+            <div class="teltac-brand">
+                <span class="teltac-text">TELTAC</span>
+            </div>
+            
+            <!-- Keep original corner screws exactly as is -->
+            <div class="screw top-left"></div>
+            <div class="screw top-right"></div>
+            <div class="screw bottom-left"></div>
+            <div class="screw bottom-right"></div>
         </div>
     </div>
     
