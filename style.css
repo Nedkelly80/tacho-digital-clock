@@ -7,12 +7,13 @@
 }
 
 body {
-    background: #2c2c2c;
+    background: #1a1a1a;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
+    padding: 20px;
 }
 
 .tacho-container {
@@ -21,201 +22,304 @@ body {
     align-items: center;
 }
 
+/* Main device body - rectangular like the original */
 .device-body {
     position: relative;
-    width: 300px;
-    height: 300px;
-    background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
-    border-radius: 15px;
-    border: 3px solid #1a1a1a;
+    width: 280px;
+    height: 280px;
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 50%, #1a1a1a 100%);
+    border: 4px solid #0a0a0a;
+    border-radius: 12px;
     box-shadow: 
+        0 0 20px rgba(0, 0, 0, 0.8),
         inset 0 2px 4px rgba(255, 255, 255, 0.1),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-        0 8px 16px rgba(0, 0, 0, 0.4);
+        inset 0 -2px 4px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 20px;
 }
 
-.felix-brand {
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
+/* Top section with Felix branding */
+.top-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.felix-logo {
+    margin-bottom: 2px;
 }
 
 .felix-text {
-    font-family: 'Arial Black', Arial, sans-serif;
-    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
     font-weight: 900;
-    color: #e0e0e0;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    color: #d0d0d0;
+    letter-spacing: 3px;
+    text-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.8),
+        0 0 5px rgba(255, 255, 255, 0.1);
 }
 
-.model-text {
-    position: absolute;
-    top: 35px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Arial', sans-serif;
-    font-size: 10px;
+.model-name {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
     font-weight: bold;
-    color: #c0c0c0;
-    letter-spacing: 1px;
+    color: #b0b0b0;
+    letter-spacing: 1.5px;
+    margin-top: 2px;
 }
 
-.lcd-display {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 200px;
-    height: 60px;
-    background: #2d4a2d;
-    border: 2px solid #1a1a1a;
-    border-radius: 4px;
-    box-shadow: 
-        inset 0 2px 4px rgba(0, 0, 0, 0.3),
-        inset 0 -1px 2px rgba(255, 255, 255, 0.1);
+/* LCD Display section - centered */
+.lcd-section {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
-.time-display {
+.lcd-frame {
+    width: 180px;
+    height: 50px;
+    background: #1a1a1a;
+    border: 3px solid #0a0a0a;
+    border-radius: 6px;
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.8),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.lcd-screen {
     width: 100%;
     height: 100%;
+    background: linear-gradient(180deg, #0a1a0a 0%, #051005 100%);
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(180deg, #1a2e1a 0%, #0f1e0f 100%);
-    border-radius: 2px;
+    position: relative;
+}
+
+/* Add subtle LCD grid pattern */
+.lcd-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 1px,
+            rgba(0, 20, 0, 0.3) 1px,
+            rgba(0, 20, 0, 0.3) 2px
+        );
+    border-radius: 3px;
+    pointer-events: none;
 }
 
 .time-text {
     font-family: 'Orbitron', monospace;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
-    color: #00ff41;
+    color: #00ff00;
     text-shadow: 
-        0 0 5px #00ff41,
-        0 0 10px #00ff41,
-        0 0 15px #00ff41;
-    letter-spacing: 2px;
-    animation: glow 2s ease-in-out infinite alternate;
+        0 0 8px #00ff00,
+        0 0 16px #00ff00,
+        0 0 24px #00ff00;
+    letter-spacing: 1px;
+    z-index: 1;
+    animation: lcd-glow 3s ease-in-out infinite alternate;
 }
 
-@keyframes glow {
-    from {
+@keyframes lcd-glow {
+    0% {
         text-shadow: 
-            0 0 5px #00ff41,
-            0 0 10px #00ff41,
-            0 0 15px #00ff41;
+            0 0 8px #00ff00,
+            0 0 16px #00ff00,
+            0 0 24px #00ff00;
     }
-    to {
+    100% {
         text-shadow: 
-            0 0 8px #00ff41,
-            0 0 15px #00ff41,
-            0 0 20px #00ff41,
-            0 0 25px #00ff41;
+            0 0 12px #00ff00,
+            0 0 20px #00ff00,
+            0 0 28px #00ff00,
+            0 0 32px #00ff00;
     }
 }
 
-.rpm-label {
-    position: absolute;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Arial', sans-serif;
-    font-size: 16px;
+/* Bottom section */
+.bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.rpm-section {
+    margin-bottom: 8px;
+}
+
+.rpm-text {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
     font-weight: bold;
-    color: #e0e0e0;
-    letter-spacing: 3px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    color: #c0c0c0;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-.teltac-brand {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(145deg, #cc3333, #aa1111);
-    border: 2px solid #880000;
-    border-radius: 8px;
-    padding: 4px 12px;
+/* Teltac badge - red rectangular badge like original */
+.teltac-badge {
+    background: linear-gradient(135deg, #cc2222 0%, #aa1111 50%, #881111 100%);
+    border: 2px solid #660000;
+    border-radius: 4px;
+    padding: 3px 10px;
     box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.5),
         inset 0 1px 2px rgba(255, 255, 255, 0.2),
-        inset 0 -1px 2px rgba(0, 0, 0, 0.3),
-        0 2px 4px rgba(0, 0, 0, 0.3);
+        inset 0 -1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .teltac-text {
-    font-family: 'Arial Black', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 10px;
     font-weight: 900;
-    color: white;
+    color: #ffffff;
     letter-spacing: 1px;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-.screw {
+/* Mounting screws - positioned exactly like original */
+.mounting-screw {
     position: absolute;
-    width: 12px;
-    height: 12px;
-    background: radial-gradient(circle, #666 30%, #333 70%);
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle, #555 20%, #333 60%, #111 100%);
+    border: 1px solid #000;
     border-radius: 50%;
-    border: 1px solid #222;
     box-shadow: 
         inset 0 1px 2px rgba(255, 255, 255, 0.2),
-        inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+        inset 0 -2px 4px rgba(0, 0, 0, 0.6),
+        0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.screw::before {
+/* Phillips screw head detail */
+.mounting-screw::before {
     content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 8px;
-    height: 1px;
+    height: 1.5px;
     background: #222;
-    box-shadow: 0 -2px 0 #222;
+    box-shadow: 
+        0 -3px 0 0 #222,
+        -3px 0 0 0 #222,
+        3px 0 0 0 #222;
 }
 
-.top-left { top: 10px; left: 10px; }
-.top-right { top: 10px; right: 10px; }
-.bottom-left { bottom: 10px; left: 10px; }
-.bottom-right { bottom: 10px; right: 10px; }
-
-/* Responsive design */
-@media (max-width: 480px) {
-    .device-body {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .lcd-display {
-        width: 160px;
-        height: 50px;
-    }
-    
-    .time-text {
-        font-size: 20px;
-    }
+.mounting-screw::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(90deg);
+    width: 8px;
+    height: 1.5px;
+    background: #222;
 }
 
-/* Add some ambient lighting effect */
+/* Screw positions - exactly like original */
+.top-left { 
+    top: 12px; 
+    left: 12px; 
+}
+
+.top-right { 
+    top: 12px; 
+    right: 12px; 
+}
+
+.bottom-left { 
+    bottom: 12px; 
+    left: 12px; 
+}
+
+.bottom-right { 
+    bottom: 12px; 
+    right: 12px; 
+}
+
+/* Add subtle ambient lighting effect */
 .device-body::before {
     content: '';
     position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-    border-radius: 20px;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: radial-gradient(
+        ellipse at 30% 20%, 
+        rgba(255, 255, 255, 0.08) 0%, 
+        transparent 60%
+    );
+    border-radius: 15px;
     z-index: -1;
+}
+
+/* Hover effects */
+.lcd-frame:hover {
+    box-shadow: 
+        inset 0 2px 6px rgba(0, 0, 0, 0.8),
+        inset 0 -1px 2px rgba(255, 255, 255, 0.1),
+        0 0 10px rgba(0, 255, 0, 0.2);
+}
+
+/* Notification styling */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 255, 0, 0.9);
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'Orbitron', monospace;
+    font-weight: bold;
+    font-size: 12px;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .device-body {
+        width: 240px;
+        height: 240px;
+    }
+    
+    .lcd-frame {
+        width: 150px;
+        height: 40px;
+    }
+    
+    .time-text {
+        font-size: 16px;
+    }
+    
+    .felix-text {
+        font-size: 14px;
+    }
 }
